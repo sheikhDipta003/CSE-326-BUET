@@ -1,0 +1,13 @@
+*.class
+
+build/**
+
+__pycache__/
+
+.idea/
+
+*.pyc
+
+venv/bin/
+
+**/venv/**

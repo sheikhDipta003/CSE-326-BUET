@@ -1,0 +1,23 @@
+{% extends 'blog/base.html' %}
+{% load crispy_forms_tags %}   <!---Takes care of all the css formatting for our form.--->
+{% block content %}
+    <div class="content-section">
+        <form method="POST" action="">
+            {% csrf_token %}
+            <!-- Cross Site Reference Forgery token, protects the form from certain external attacks. Its just some added security provided by
+            django. However, it is necessary to include it within <form> tag, otherwise our form will not work. -->
+            <fieldset class="form-group">
+                <legend class="border-bottom mp-4">Join Today</legend>
+                {{ form|crispy }}        <!---Apply all the CSS from crispy package.--->
+            </fieldset>
+            <div class="form-group">
+                <button class="btn btn-outline-info" type="submit">Sign up</button>
+            </div>
+        </form>
+        <div class="border-top pt-3">
+            <small class="text-muted">
+                Already Have An Account? <a href="{% url 'login' %}" class="ml-2">Login</a>
+            </small>
+        </div>
+    </div>
+{% endblock content %}
