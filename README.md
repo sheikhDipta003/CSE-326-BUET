@@ -35,7 +35,7 @@ This project has the following apps [In django, an app is an independent module]
 |          views.py          | Each time a new user registers, collect all the data from the form and save the user in database. After successful registration, return to homepage. |                 yes                 |
 
 
-```
+```bash
 .
 ├── Harpy
 │   ├── __init__.py
