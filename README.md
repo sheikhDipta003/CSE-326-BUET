@@ -26,7 +26,6 @@ This project has the following apps [In django, an app is an independent module]
 **users** *an app/module in our project that handles the users page for register,login,logout etc*
 |     Subfolder/File Name    |                                                                      Description                                                                     | Needs to be manually modified / not |
 |:--------------------------:|:----------------------------------------------------------------------------------------------------------------------------------------------------:|:-----------------------------------:|
-|        static/users        | All 'static', that is, css/js files needed for users page.                                              												|                 yes                 |
 |       templates/users      | All html files for users-page. All of them extend 'base.html' from 'blog' app.                                    									|                 yes                 |
 |          admin.py          | Used for registering all relevant ORM models so that they show up in the localhost/users/admin page.                         						|                 yes                 |
 |           apps.py          | Contains the class instance of the 'users' app. This class-name must be included in the  INSTALLED list in settings.py.               				|                  no                 |
