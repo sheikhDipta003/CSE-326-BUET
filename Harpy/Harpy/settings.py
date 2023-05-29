@@ -126,6 +126,7 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 # Redirect user to home page instead of the default profile page
 LOGIN_REDIRECT_URL = 'blog-home'    # Its the same as the 'name' of the homepage given in blog/urls.py
+LOGIN_URL = 'login'         # Look for login page in this url instead of the default 'accounts/login/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
