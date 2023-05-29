@@ -34,3 +34,58 @@ This project has the following apps [In django, an app is an independent module]
 |          models.py         | Create all necessary Object Relational Models, that is, 'tables' with proper field names and types.                         							|                 yes                 |
 |          views.py          | Each time a new user registers, collect all the data from the form and save the user in database. After successful registration, return to homepage. |                 yes                 |
 
+
+```
+.
+├── Harpy
+│   ├── __init__.py
+│   ├── __pycache__
+│   ├── asgi.py
+│   ├── settings.py
+│   ├── urls.py
+│   └── wsgi.py
+├── blog
+│   ├── __init__.py
+│   ├── __pycache__
+│   ├── admin.py
+│   ├── apps.py
+│   ├── migrations
+│   │   ├── 0001_initial.py
+│   │   ├── __init__.py
+│   │   └── __pycache__
+│   ├── models.py
+│   ├── static
+│   │   └── blog
+│   │       └── main.css
+│   ├── templates
+│   │   └── blog
+│   │       ├── about.html
+│   │       ├── base.html
+│   │       └── home.html
+│   ├── tests.py
+│   ├── urls.py
+│   └── views.py
+├── db.sqlite3
+├── images
+│   └── harpy_logo.png
+├── manage.py
+└── users
+    ├── __init__.py
+    ├── __pycache__
+    ├── admin.py
+    ├── apps.py
+    ├── forms.py
+    ├── migrations
+    │   ├── __init__.py
+    │   └── __pycache__
+    ├── models.py
+    ├── templates
+    │   └── users
+    │       ├── login.html
+    │       ├── logout.html
+    │       ├── profile.html
+    │       └── register.html
+    ├── tests.py
+    └── views.py
+
+```
