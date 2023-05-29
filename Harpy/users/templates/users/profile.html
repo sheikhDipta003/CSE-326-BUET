@@ -1,0 +1,6 @@
+{% extends 'blog/base.html' %}
+{% load crispy_forms_tags %}   <!---Loads some external css for formatting our form.--->
+{% block content %}
+    <!-- 'user' is a built-in django variable that represents the current logged in user -->
+    <h1>You are currently logged in as <i>{{ user.username }}</i></h1>
+{% endblock content %}

@@ -1,0 +1,19 @@
+{% extends 'blog/base.html' %}
+{% block content %}
+    <div class="content-section">
+        <form method="POST" action="">
+            {% csrf_token %}
+            <!-- Cross Site Reference Forgery token, protects the form from certain external attacks. Its just some added security provided by
+            django. However, it is necessary to include it within <form> tag, otherwise our form will not work. -->
+            <fieldset class="form-group">
+                <legend class="border-bottom mp-4">Delete Post</legend>
+                <h2>Are you sure you want to delete the post "{{ post.title }}"</h2>
+            </fieldset>
+            <div class="form-group">
+                <button class="btn btn-outline-danger" type="submit">Delete</button>
+                <a class="btn btn-outline-secondary" href="{% url 'post-detail' post.id %}">Cancel</a>
+                <!-- If 'Cancel' button is pressed, redirect to the details page for this post -->
+            </div>
+        </form>
+    </div>
+{% endblock content %}

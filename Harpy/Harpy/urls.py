@@ -23,6 +23,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('register/', user_views.register, name='register'),
     path('login/', auth_views.LoginView.as_view(template_name='users/login.html'), name='login'),
+    path('profile/', user_views.profile, name='profile'),
     path('logout/', auth_views.LogoutView.as_view(template_name='users/logout.html'), name='logout'),
     path('', include('blog.urls'))
 ]
@@ -30,4 +31,7 @@ urlpatterns = [
 """
 We don't want users to be exposed to the admin section when they try to login after logging out, rather we want them to be redirected to
 a general user-login page. Thus, we need to create 'logout.html' in 'users' app instead of using the default logout system.
+
+We want a user to be redirected to 'localhost/login/' page when they try to access their profile page through browser without logging in. But
+"path('login/',...)" -> here, we are just telling django that whenever a user NAVIGATES to 'localhost/login/' page, route them to the following view. Thus, we have to set 'LOGIN_URL' in settings.py.
 """
