@@ -61,7 +61,10 @@ This project has the following apps [In django, an app is an independent module]
 │   │   └── blog
 │   │       ├── about.html
 │   │       ├── base.html
-│   │       └── home.html
+│   │       ├── home.html
+│   │       ├── post_confirm_delete.html
+│   │       ├── post_detail.html
+│   │       └── post_form.html
 │   ├── tests.py
 │   ├── urls.py
 │   └── views.py
@@ -87,5 +90,4 @@ This project has the following apps [In django, an app is an independent module]
     │       └── register.html
     ├── tests.py
     └── views.py
-
 ```
