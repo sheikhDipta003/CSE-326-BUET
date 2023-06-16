@@ -1,0 +1,36 @@
+Content :
+- Motivation ( Why this project is useful? How is it different from other existing systems? )
+- Objectives
+	- Develop a user-friendly and intuitive interface for residents, staff, and administrators to access and interact with the information system.
+	- Enable residents to submit maintenance requests, report issues, and communicate with the management team.
+	- Streamline administrative tasks, including resident onboarding, billing, and record keeping.
+	- Facilitate efficient management of home-related information, such as property details, historical records, and maintenance schedules.
+	- Provide real-time notifications and updates to residents regarding maintenance activities, community events, and important announcements.
+- Modules 
+- Features
+
+Module 1: Resident Portal
+- User registration and login functionality.
+- Dashboard displaying personalized information, notifications, and announcements.
+- Maintenance request submission with the ability to attach photos or documents.
+- Communication platform for residents to interact with the management team and fellow residents.
+- Access to community events, amenities, and service bookings.
+
+
+Module 2: Staff/Administration Portal
+- User authentication and role-based access control.
+- Maintenance request management system for tracking, assigning, and resolving issues.
+- Billing and invoicing module for managing resident payments.
+- Resident database for storing personal information, contact details, and preferences.
+- Document management system for archiving important records and documents.
+- Event management system for organizing community events and activities.
+- Reporting and analytics capabilities for performance tracking and decision making.
+
+
+Module 3: Communication Channels
+- Integration with email and SMS services for automated notifications and alerts.
+- Announcement board or newsfeed for broadcasting important information to residents.
+- Discussion forums or chat features for community engagement and knowledge sharing.
+
+
+
