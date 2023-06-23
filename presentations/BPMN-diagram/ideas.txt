@@ -1,0 +1,36 @@
+- Pools are used to separate and distinguish the responsibilities and boundaries of different entities involved in the process. 
+- A lane represents a smaller organizational unit, a department, or an individual responsible for carrying out a set of 
+activities within the process.
+
+
+
+Pools and Lanes:
+1) User
+	- Resident
+		- Dashboard [Authentication]
+			- Health and Diet Observation
+			- Community participation
+		- Payment [billing, viewing payment history]
+		- Activities [signing up for fitness session, arts and crafts, book issue]
+		- Notification [Request approval, event reminder, dues reminder, task reminder]
+		- Reservation
+				- Room status viewing
+				- Room booking
+					- Premium User
+					- Regular User
+	- Non-resident
+		- Dashboard [Authentication]
+			- Community participation
+		- Payment [billing, viewing payment history]
+		- Get Staff assignment
+		- Notification [Request approval, event reminder, dues reminder]
+2) Admin
+	- Dashboard [Authentication]
+	- Resident related issues [Resident application approval, complaints handling]
+	- Staff related issues	[Staff assignment and allocation]
+	- Donor related issues
+	- Resource related issues [Monetary management]
+	- Event Creation and Management [Event creation, scheduling, task status tracking]
+3) Donor [Apply, provide personal details]
+
+- Emergency handling + TransPort ??
