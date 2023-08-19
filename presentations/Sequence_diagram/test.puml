@@ -1,0 +1,25 @@
+@startuml Old Age Home Meal Management System
+
+actor MealManager
+
+MealManager -> MealPlanner: Define Meal Plan
+MealPlanner -> MealPlanner: Create Weekly Plan
+MealPlanner -> MealPlanner: Divide Plan into Meals
+
+MealPlanner -> Resident: Gather Meal Preferences
+Resident -> MealPlanner: Provide Preferences
+
+MealPlanner -> Supplier: Check Ingredients
+Supplier -> Supplier: Update Ingredient Availability
+Supplier --> MealPlanner: Ingredient Availability
+
+MealPlanner -> MealManager: Generate Shopping List
+
+MealManager -> Supplier: Purchase Ingredients
+Supplier -> Supplier: Deduct Purchased Ingredients
+Supplier --> MealManager: Purchase Confirmation
+
+MealManager -> MealPlanner: Update Shopping Status
+MealPlanner -> MealManager: Notify Meal Plan Ready
+
+@enduml

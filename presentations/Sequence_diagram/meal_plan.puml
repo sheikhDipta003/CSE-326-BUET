@@ -1,0 +1,131 @@
+'version-1'
+@startuml Old Age Home Meal Management System
+
+actor MealManager
+actor InventorySystem
+actor MealPlanner
+actor Resident
+
+MealManager -> MealPlanner: Define Meal Plan
+MealPlanner -> MealPlanner: Create Weekly Plan
+MealPlanner -> MealPlanner: Divide Plan into Meals
+
+MealPlanner -> Resident: Gather Meal Preferences
+Resident -> MealPlanner: Provide Preferences
+
+MealPlanner -> InventorySystem: Check Ingredients
+InventorySystem -> InventorySystem: Update Ingredient Availability
+InventorySystem --> MealPlanner: Ingredient Availability
+
+MealPlanner -> MealManager: Generate Shopping List
+
+MealManager -> InventorySystem: Purchase Ingredients
+InventorySystem -> InventorySystem: Deduct Purchased Ingredients
+InventorySystem --> MealManager: Purchase Confirmation
+
+MealManager -> MealPlanner: Update Shopping Status
+MealPlanner -> MealManager: Notify Meal Plan Ready
+
+@enduml
+
+
+'version-2'
+@startuml
+actor MealManager
+entity MealPlan
+entity Inventory
+database DataStore
+
+MealManager -> MealPlan: Create Weekly Meal Plan
+MealManager -> DataStore: Retrieve Resident Preferences
+
+loop For each day in the week
+    MealManager -> MealPlan: Plan Breakfast
+    MealManager -> MealPlan: Plan Lunch
+    MealManager -> MealPlan: Plan Afternoon Snack
+    MealManager -> MealPlan: Plan Dinner
+    
+    alt Residents with special requirements
+        MealManager -> MealPlan: Update Special Meals
+    else
+        MealManager -> MealPlan: Update Regular Meals
+    end
+end
+
+MealManager -> Inventory: Check Ingredients
+
+loop For each meal in the meal plan
+    Inventory -> Inventory: Update Ingredient Quantities
+end
+
+MealManager -> Inventory: Purchase Ingredients
+@enduml
+
+
+'version-3'
+@startuml
+actor MealManager
+
+MealManager -> MealPlanner: PlanWeeklyMeal()
+activate MealPlanner
+
+MealPlanner -> Resident: GetMealPreferences()
+activate Resident
+Resident --> MealPlanner: Preferences
+
+MealPlanner -> InventorySystem: CheckInventory()
+activate InventorySystem
+InventorySystem --> MealPlanner: AvailableIngredients
+
+MealPlanner -> Supplier: OrderIngredients(AvailableIngredients)
+activate Supplier
+Supplier --> MealPlanner: OrderConfirmation
+
+MealPlanner -> MealPlanner: PrepareMealPlan()
+activate MealPlanner
+MealPlanner -> InventorySystem: DeductIngredients(OrderedIngredients)
+InventorySystem --> MealPlanner: DeductionConfirmation
+
+MealPlanner -> Resident: NotifyMealPlan()
+deactivate Resident
+
+MealPlanner --> MealManager: WeeklyMealPlan
+
+deactivate Supplier
+deactivate InventorySystem
+deactivate MealPlanner
+@enduml
+
+
+'version-4'
+@startuml
+actor MealManager
+participant MealPlanner
+participant Supplier
+participant Resident
+
+MealManager -> MealPlanner: CreateWeeklyMealPlan()
+activate MealPlanner
+
+loop For each day in the week
+    MealManager -> MealPlanner: SpecifyMealPlan(day)
+    activate MealPlanner
+    MealPlanner -> Resident: GetDietaryRequirements(day)
+    activate Resident
+    Resident --> MealPlanner: DietaryRequirements
+    deactivate Resident
+    MealPlanner -> Resident: GetFoodPreferences(day)
+    activate Resident
+    Resident --> MealPlanner: FoodPreferences
+    deactivate Resident
+    MealPlanner -> MealPlanner: CalculateIngredientQuantities(day)
+    MealPlanner -> Supplier: PlaceIngredientOrder(day)
+    activate Supplier
+    Supplier --> MealPlanner: OrderConfirmation
+    deactivate Supplier
+    MealPlanner -> MealPlanner: UpdateInventory(day)
+    deactivate MealPlanner
+end loop
+
+@enduml
+
