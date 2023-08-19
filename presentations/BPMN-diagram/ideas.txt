@@ -1,3 +1,6 @@
+
+https://lucid.app/lucidchart/24908d58-e01d-4b8a-9417-4fc19acc89d7/edit
+
 - Pools are used to separate and distinguish the responsibilities and boundaries of different entities involved in the process. 
 - A lane represents a smaller organizational unit, a department, or an individual responsible for carrying out a set of 
 activities within the process.
@@ -14,8 +17,7 @@ Pools and Lanes:
 		- Activities [signing up for fitness session, arts and crafts, book issue]
 		- Notification [Request approval, event reminder, dues reminder, task reminder]
 		- Reservation
-				- Room status viewing
-				- Room booking
+				- Room status viewing and booking
 					- Premium User
 					- Regular User
 	- Non-resident
@@ -31,6 +33,9 @@ Pools and Lanes:
 	- Donor related issues
 	- Resource related issues [Monetary management]
 	- Event Creation and Management [Event creation, scheduling, task status tracking]
-3) Donor [Apply, provide personal details]
+3) Staff
+	- Dashboard [Authentication]
+	- Transport
+4) Donor [Apply, provide personal details]
 
-- Emergency handling + TransPort ??
+- Emergency handling
