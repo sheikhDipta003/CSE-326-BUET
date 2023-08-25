@@ -1,0 +1,45 @@
+----- installing django ------
+pip install django
+python -m django --version
+
+------ creating project -------
+django-admin
+django-admin startproject <project_name>
+cd <project_name>
+
+----- running server, creating new app --------
+python manage.py runserver
+python manage.py startapp <app-name>
+
+---- Database -----
+python manage.py makemigrations	[detect db changes]
+python manage.py migrate		[apply those changes]
+python manage.py createsuperuser
+python manage.py sqlmigrate <app-name> <migration-number> [view actual db code]
+
+python manage.py shell	[open python prompt]
+from blog.models import Post [import Post model]
+from django.contrib.auth.models import User
+User.objects.all()
+User.objects.first()
+User.objects.last()
+User.objects.filter(username='jondoe')
+User.objects.filter(username='jondoe').first()
+user = User.objects.filter(username='jondoe').first()
+user.id
+user.pk
+user = User.objects.get(id=1)
+Post.objects.all()
+post_1 = Post(title='blog-1',content='something',author=user)
+Post.objects.all()	[still empty]
+post_1.save()		[save to db]
+Post.objects.all()	[1 Post object]
+exit()				[exit shell]
+user = User.objects.get(id=1)
+post_2 = Post(title='blog-2',content='something',author_id=user.id)
+post_2.save()
+user.post_set.all()
+user.post_set.create(title='Blog-3',content='something')
+[no need to run post.save()]
+
+
