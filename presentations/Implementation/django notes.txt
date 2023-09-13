@@ -17,6 +17,8 @@ python manage.py migrate		[apply those changes]
 python manage.py createsuperuser
 python manage.py sqlmigrate <app-name> <migration-number> [view actual db code]
 
+------let's say I have a model named Post-----------
+-----These are some python shell commands that enable us to directly modify the database table named Post without using API-----
 python manage.py shell	[open python prompt]
 from blog.models import Post [import Post model]
 from django.contrib.auth.models import User
