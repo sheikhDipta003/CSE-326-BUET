@@ -1,0 +1,71 @@
+03,14,30,33,49,53
+
+Database tables:
+1) Member
+2) Resident's Medical Conditions
+3) Medical Conditions---
+4) Current Condition
+5) Medicine---
+6) Medicine Chart---
+7) Dosage---
+8) Checkup Item
+9) Checkup Schedule---
+10) Special Checkup Schedule
+11) Member Appointments
+12) Nurse
+13) Doctor---
+
+We have to create a separate class for each database table in the files models.py. For example, tables 3,5,6,7,9,13 will be created in the file doctors/models.py. tables 1,2,4,11 will be in residents/models.py. And rest of them will be in nurses/models.py.
+
+Views:
+1) doctors app [doctors/views.py]
+- dashboard
+- profile
+- ResidentStatus
+- PrescriptionCreate
+- PrescriptionDetails
+- PrescriptionUpdate
+- PrescriptionDelete
+- RestrictionCreate
+- RestrictionDetails
+- RestrictionUpdate
+- RestrictionDelete
+- NurseScheduleCreate
+- NurseScheduleUpdate
+- NurseScheduleDelete
+- NurseScheduleDetails
+- CheckupReportDetails
+
+2) nurses app [nurses/views.py]
+- dashboard
+- profile
+- NurseSchedule
+- AssignedResidentsList
+- AssignedResidentsDetails
+- CheckupReportCreate
+- CheckupReportUpdate
+- PrescriptionDetails
+
+3) residents app [residents/views.py]
+- dashboard
+- ResidentStatus
+- PrescriptionList
+
+Similarly, write separate functions for each of the views listed in corresponding .py file. 
+
+HTML files:
+- html files will be placed in doctors/templates/doctors/, nurses/templates/nurses/ and residents/templates/residents/ folders respectively.
+- We have to create one html file for each of the views for that particular app (doctors,nurses and residents).
+
+
+03 -> tables : 1,2,4,11; views + html: all of residents app
+14 -> tables : 3,5,6,7,9,13; views : doctors -> dashboard, profile, ResidentStatus
+30 -> tables : 8,10,12 ; views : doctors -> NurseSchedule, nurses -> NurseSchedule
+33 -> views + html : doctors -> Prescription, Restriction, nurses -> AssignedResidents, Prescription
+49 -> views + html : nurses -> dashboard, profile, CheckupReport, doctors -> CheckupReport
+53 -> 
+	doctors module:
+	dashboard, profile and residents der overall status view korar jonno 3 ta html file, oi doctor er under e je nurses ase tader schedule create,update,view korar jonno ekta htm
+	
+	nurse module:
+	nurse er nijeder schedule view korar jonno ekta html
