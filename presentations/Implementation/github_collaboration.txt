@@ -1,0 +1,14 @@
+1) Go to the master branch from cmdline
+use this command : 'git pull origin master' which will fetch all the code from remote repo and merge them with my local repo
+
+2) To perform any modification, create a new brach using 'git checkout -b <branch-name>', make necessary changes, stage those changes with 'git add <filenames>' and commit this branch to local repo using 'git commit -m "<messsage>"'
+
+3) Next, push this branch upto the remote repo using 'git push origin <my-branch-name>' so that the other teammates can review my code. If they agree on this code, they can chose to merge my branch with the master branch on the remote repo. After that, everyone just make a 'git pull' command to download updated code from remote to their local repo.
+
+4) Click on the button 'Compare & Pull Request', put in comment explaining the changes (optional), and click on 'Create Pull Request'. Thus, I have made the request that I want to merge this branch with the master branch on the remote repo. If I do this, everyone will get a notif.
+
+5) They can then click on 'Merge pull request' and then on 'Confirm merge' to merge this branch with the master branch.
+
+6) After merging the branch, we can delete that branch as well since all of its codes have already been meerged with master by clicking on 'delete branch' btn.
+
+7) 'git checkout master' to switch back to the master branch.
