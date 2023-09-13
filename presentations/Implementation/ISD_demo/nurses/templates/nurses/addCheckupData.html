@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Checkup Data</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+<body>
+    <div class="container mt-4">
+        <h2>Add Checkup Data</h2>
+        
+        <form id="checkupForm">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="Blood_pressure">Blood Pressure:</label>
+                <input type="text" class="form-control" id="Blood_pressure" placeholder="Enter Blood Pressure">
+            </div>
+            <div class="form-group">
+                <label for="Sugar">Sugar:</label>
+                <input type="text" class="form-control" id="Sugar" placeholder="Enter Sugar">
+            </div>
+            <div class="form-group">
+                <label for="Heartrate">Heart Rate:</label>
+                <input type="text" class="form-control" id="Heartrate" placeholder="Enter Heart Rate">
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script>
+        $(document).ready(function() {
+            $('#checkupForm').submit(function(event) {
+                event.preventDefault();
+                
+                const bp = $('#Blood_pressure').val();
+                const sugar = $('#Sugar').val();
+                const hr = $('#Heartrate').val();
+                
+                $.ajax({
+                    type: 'POST',
+                    url: '{% url "add_checkup_data" checkup_id=checkup_id %}',
+                    data: {
+                        'Blood_pressure': bp,
+                        'Sugar': sugar,
+                        'Heartrate': hr,
+                        'csrfmiddlewaretoken': '{{ csrf_token }}'
+                    },
+                    success: function(data) {
+                        if (data.success) {
+                            alert('Checkup data added successfully.');
+                            $('#Blood_pressure').val('');
+                            $('#Sugar').val('');
+                            $('#Heartrate').val('');
+                        } else {
+                            alert('An error occurred while adding checkup data: ' + data.error);
+                        }
+                    },
+                    error: function() {
+                        alert('An error occurred while sending the request.');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

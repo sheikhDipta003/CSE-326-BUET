@@ -1,0 +1,98 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>See prescriptions</title>
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;400;900&family=Ubuntu&display=swap" rel="stylesheet">
+    
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+        <link rel="stylesheet" href="{% static 'doctors/navbar.css' %}">
+        <link rel="stylesheet" href="{% static 'doctors/residentStatus.css' %}">
+    </head>
+<body>
+    <section id="navigation">
+        <div class="container-fluid">
+            <!-- Nav Bar -->
+            <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
+                <a class="navbar-brand" href="">Belasheshe</a>
+
+                <ul class="navbar-nav ms-auto">
+                    <a class="nav-link" href="#">Dashboard</a>
+                    <a class="nav-link" href="#">Member Info</a>
+                    <a class="nav-link" href="#">Nurse Info</a>
+                    <a class="nav-link" href="#">My profile (Doctor)</a>
+                     <!-- <a class="nav-link disabled" aria-disabled="true">Disabled</a> -->
+                </ul>
+
+            </nav>
+        </div>
+    </section>
+    <header class="header">
+        <h1>Prescription of {{ info.member_name }} </h1>
+    </header>
+
+    <div class="main-content">
+        {% for prescription in prescriptions %}
+        <div class="prescription">
+            <div class="container text-center">
+                <div class="row align-items-start">
+                    <div class="col">
+                        <h3>Prescription on {{ prescription.date }}</h3>
+                    </div>
+                    <div class="col button-actions">
+                        <a class="btn btn-outline-dark" href="#" role="button">Edit</a>
+                        <a class="btn btn-outline-danger" href="#" role="button">Delete</a>
+                    </div>
+
+                </div>
+            </div>
+            {% comment %} in chatgpt
+            # views.py
+from django.shortcuts import render
+from .models import MedicineChart, Dosage
+
+def member_medicine_charts(request, member_id):
+    # Retrieve all the MedicineCharts for Member_id=105
+    prescriptions = MedicineChart.objects.filter(Member_id=member_id)
+
+    # Use select_related to fetch related Medicine objects for each chart
+    prescriptions = prescriptions.select_related('dosage__Medicine_id')
+
+    context = {
+        'member_id': member_id,
+        'prescriptions': prescriptions,
+    }
+
+    return render(request, 'medicine_charts.html', context)
+
+            {% endcomment %}
+            
+            <table class="table table-bordered text-center">
+                <thead>
+                    <tr>
+                        <th>Medicine Name</th>
+                        <th>Time</th>
+                        <th>Quantity</th>
+                    </tr>
+                </thead>
+                <tbody class="view-details">
+                    {% for dosage in prescriptions.dosage_set.all %}
+                    <tr>
+                        <td>{{ dosage.Medicine_id.Name }}</td>
+                        <td>{{ dosage.Time }}</td>
+                        <td>{{ dosage.Quantity }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% endfor %}
+        
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+
+</body>
+</html>

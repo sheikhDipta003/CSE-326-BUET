@@ -1,0 +1,135 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doctor's Dashboard</title>
+    <!-- Include Bootstrap CSS -->
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Include DataTables CSS -->
+    <link rel="stylesheet" href="{% static 'doctors/navbar.css' %}">
+
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.4/css/jquery.dataTables.css">
+
+</head>
+<body>
+    <section id="navigation">
+        <div class="container-fluid">
+            <!-- Nav Bar -->
+            <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
+                <a class="navbar-brand" href="">Belasheshe</a>
+
+                <ul class="navbar-nav ms-auto">
+                    <a class="nav-link" href="#">Dashboard</a>
+                    <a class="nav-link active" aria-current="page" href="{% url 'resident_status' %}">Member Info</a>
+                    <a class="nav-link" href="#">Nurse Info</a>
+                    <a class="nav-link" href="#">My profile (Doctor)</a>
+                     <!-- <a class="nav-link disabled" aria-disabled="true">Disabled</a> -->
+                </ul>
+
+            </nav>
+        </div>
+    </section>
+    <div class="container mt-4">
+        <h1>Doctor's Dashboard</h1>
+
+        <!-- Regular Checkups Table -->
+        <h2>Regular Checkups</h2>
+        <table class="table table-bordered" id="regularCheckupsTable">
+            <thead>
+                <tr>
+                    <th data-type="date">Date</th>
+                    <th>Member Name</th>
+                    <!-- Add more columns as needed -->
+                </tr>
+            </thead>
+            <tbody>
+                {% for checkup in regular_checkups %}
+                <tr>
+                    <td>{{ checkup.Date }}</td>
+                    <td>{{ checkup.Member_Id.Name }}</td>
+                    <!-- Add more columns as needed -->
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <!-- Special Checkups Table -->
+        <h2>Special Checkups</h2>
+        <table class="table table-bordered" id="specialCheckupsTable">
+            <thead>
+                <tr>
+                    <th data-type="date">Date</th>
+                    <th>Member Name</th>
+                    <!-- Add more columns as needed -->
+                </tr>
+            </thead>
+            <tbody>
+                {% for checkup in special_checkups %}
+                <tr>
+                    <td>{{ checkup.Date }}</td>
+                    <td>{{ checkup.Member_Id.Name }}</td>
+                    <!-- Add more columns as needed -->
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <!-- Appointments Table -->
+        <h2>Appointments</h2>
+        <table class="table table-bordered" id="appointmentsTable">
+            <thead>
+                <tr>
+                    <th data-type="date">Date</th>
+                    <th>Member Name</th>
+                    <!-- Add more columns as needed -->
+                </tr>
+            </thead>
+            <tbody>
+                {% for appointment in appointments %}
+                <tr>
+                    <td>{{ appointment.Date }}</td>
+                    <td>{{ appointment.Member_ID.Name }}</td>
+                    <!-- Add more columns as needed -->
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Include Bootstrap and jQuery Scripts -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- Include jQuery -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<!-- Include DataTables JavaScript -->
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.4/js/jquery.dataTables.js"></script>
+    
+<script>
+    $(document).ready(function() {
+        $('#regularCheckupsTable').DataTable({
+            "columnDefs": [
+                { "type": "date", "targets": 0 }  // Assuming the date column is the first (index 0) column
+            ]
+        });
+        $('#specialCheckupsTable').DataTable({
+            "columnDefs": [
+                { "type": "date", "targets": 0 }  // Assuming the date column is the first (index 0) column
+            ]
+        });
+        $('#appointmentsTable').DataTable({
+            "columnDefs": [
+                { "type": "date", "targets": 0 }  // Assuming the date column is the first (index 0) column
+            ]
+        });
+    });
+</script>
+
+
+    
+</body>
+</html>

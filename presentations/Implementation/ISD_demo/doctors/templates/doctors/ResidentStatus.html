@@ -1,0 +1,95 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resident Status</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;400;900&family=Ubuntu&display=swap" rel="stylesheet">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'doctors/residentStatus.css' %}">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.4/css/jquery.dataTables.css">
+</head>
+<body>
+    <section id="navigation">
+        <div class="container-fluid">
+            <!-- Nav Bar -->
+            <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
+                <a class="navbar-brand" href="">Belasheshe</a>
+
+                <ul class="navbar-nav ms-auto">
+                    <a class="nav-link" href="#">Dashboard</a>
+                    <a class="nav-link active" aria-current="page" href="#">Member Info</a>
+                    <a class="nav-link" href="#">Nurse Info</a>
+                    <a class="nav-link" href="#">My profile (Doctor)</a>
+                     <!-- <a class="nav-link disabled" aria-disabled="true">Disabled</a> -->
+                </ul>
+
+            </nav>
+            <div class="tabbing" id="allOptions">
+                <ul class="nav nav-tabs justify-content-center">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">Resident Status</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Special Checkup Report</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <div class="main-content">
+        <h2 class="context-title">Resident Status:</h2>
+        <!-- <div class="input-group">
+            <div class="form-outline">
+              <input type="search" id="byName" class="form-control-md-5" placeholder="Search by name" />
+            </div>
+            <button type="submit" class="btn btn-primary">
+              Search
+            </button>
+          </div> -->
+        
+        <table class="table table-bordered" id="residentInfo">
+            <thead>
+                <tr>
+                    <th>Resident ID</th>
+                    <th>Name</th>
+                    <th>Risk Rate</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody class="view-details">
+                <!-- Resident Info Rows -->
+                {% for member in members %}
+                <tr>
+                    <td>{{ member.Member_ID }}</td>
+                    <td>{{ member.Name }}</td>
+                    <td>{{ member.riskrate }}</td>
+                    <td>
+                        <a href="{% url 'member_condition' member_id=member.Member_ID %}">View</a>
+                    </td>
+                </tr>
+                {% endfor %}
+                <!-- Add more resident info rows as needed -->
+            </tbody>
+        </table>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<!-- Include DataTables JavaScript -->
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.4/js/jquery.dataTables.js"></script>
+    
+<script>
+    $(document).ready(function() {
+        $('#residentInfo').DataTable({
+            ordering:  false,
+            responsive: true
+        });
+    });
+</script>
+</body>
+</html>

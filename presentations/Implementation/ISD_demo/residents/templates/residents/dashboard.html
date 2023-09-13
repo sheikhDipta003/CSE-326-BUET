@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resident Dashboard</title>
+    <!-- Add Bootstrap CSS link here -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1>Welcome, Resident!</h1>
+        <div class="row mt-4">
+            <div class="col-md-6">
+                <h2>Your Information</h2>
+                <table class="table">
+                    <tbody>
+                        <tr>
+                            <th>Member ID:</th>
+                            <td>{{ member.Member_ID }}</td>
+                        </tr>
+                        <tr>
+                            <th>Room Number:</th>
+                            <td>{{ member.Room_no }}</td>
+                        </tr>
+                        <tr>
+                            <th>Name:</th>
+                            <td>{{ member.Name }}</td>
+                        </tr>
+                        <tr>
+                            <th>Address:</th>
+                            <td>{{ member.Address }}</td>
+                        </tr>
+                        <tr>
+                            <th>Email:</th>
+                            <td>{{ member.Email }}</td>
+                        </tr>
+                        <tr>
+                            <th>Phone:</th>
+                            <td>{{ member.Phone }}</td>
+                        </tr>
+                        <tr>
+                            <th>Date of Birth:</th>
+                            <td>{{ member.DOB }}</td>
+                        </tr>
+                        <tr>
+                            <th>Religion:</th>
+                            <td>{{ member.Religion }}</td>
+                        </tr>
+                        <tr>
+                            <th>Account Number:</th>
+                            <td>{{ member.Account_no }}</td>
+                        </tr>
+                        <tr>
+                            <th>Assigned Nurse:</th>
+                            <td>{{ member.Assigned_nurse.Name }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-md-6">
+                <h2>Your Medical Condition</h2>
+                <table class="table">
+                    <tbody>
+                        <tr>
+                            <th>Condition Name:</th>
+                            <td>{{ condition.Name }}</td>
+                        </tr>
+                        <tr>
+                            <th>Advice:</th>
+                            <td>{{ condition.Advice }}</td>
+                        </tr>
+                        <tr>
+                            <th>Guidelines:</th>
+                            <td>{{ condition.Guideline }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Bootstrap JS and jQuery links here -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

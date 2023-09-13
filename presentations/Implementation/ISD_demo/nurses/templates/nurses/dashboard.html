@@ -1,0 +1,195 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nurse Dashboard</title>
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> -->
+    <!-- Include DataTables CSS -->
+    <link rel="stylesheet" href="{% static 'nurses/navbar.css' %}">
+    <!-- Include Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+    <!-- Include DataTables CSS -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.css">
+
+    <!-- Include DataTables Responsive CSS -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.2.5/css/responsive.dataTables.min.css">
+
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous"> -->
+    <!-- Include DataTables jQuery -->
+    <script type="text/javascript" charset="utf8" src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+    <!-- Include DataTables JS -->
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.js"></script>
+
+    <!-- Include DataTables Responsive JS -->
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/responsive/2.2.5/js/dataTables.responsive.min.js"></script>
+
+    <style>
+        /* Add your custom CSS styles here */
+    </style>
+</head>
+<body>
+    <section id="navigation">
+        <div class="container-fluid">
+            <!-- Nav Bar -->
+            <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
+                <a class="navbar-brand" href="">Belasheshe</a>
+
+                <ul class="navbar-nav ms-auto">
+                    <a class="nav-link" href="#">Dashboard</a>
+                    <a class="nav-link active" aria-current="page" href="{% url 'checkup_data_list' %}">Checkup Data List</a>
+                    <!-- <a class="nav-link" href="#">Nurse Info</a> -->
+                    <!-- <a class="nav-link" href="#">My profile (Doctor)</a> -->
+                     <!-- <a class="nav-link disabled" aria-disabled="true">Disabled</a> -->
+                </ul>
+
+            </nav>
+        </div>
+    </section>
+    <div class="container mt-5">
+        <h1>Nurse Dashboard</h1>
+        <h2>Medication Info</h2>
+        <table id="medicationTable" class="table table-striped table-bordered" style="width:100%">
+            <thead>
+                <tr>
+                    <th>Member Name</th>
+                    <th>Room Number</th>
+                    <th>Medicine Name</th>
+                    <th>Medicine Mg</th>
+                    <th>Medicine Company</th>
+                    <th>Medicine Available</th>
+                    <th>Chart Date</th>
+                    <th>Dosage Time</th>
+                    <th>Dosage Quantity</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for info in medication_info %}
+                <tr>
+                    <td>{{ info.member_name }}</td>
+                    <td>{{ info.member_room_no }}</td>
+                    <td>{{ info.medicine_name }}</td>
+                    <td>{{ info.medicine_mg }}</td>
+                    <td>{{ info.medicine_company }}</td>
+                    <td>{{ info.medicine_available }}</td>
+                    <td>{{ info.chart_date }}</td>
+                    <td>{{ info.dosage_time }}</td>
+                    <td>{{ info.dosage_quantity }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <h2>Health Data</h2>
+        <table id="healthTable" class="table table-striped table-bordered" style="width:100%">
+            <thead>
+                <!-- <tr>
+                    <th>Member Name</th>
+                    <th>Room Number</th>
+                    <th>Blood Pressure</th>
+                    <th>Sugar</th>
+                    <th>Heart Rate</th>
+                </tr> -->
+                <tr>
+                    <th>Member Name</th>
+                    <th>Checkup items</th>
+                    <th>Time</th>
+                    <th>Add Checkup Data</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for info in checkup_data %}
+                <!-- <tr>
+                    <td>{{ info.member_name }}</td>
+                    <td>{{ info.member_room_no }}</td>
+                    <td>{{ info.blood_pressure }}</td>
+                    <td>{{ info.sugar }}</td>
+                    <td>{{ info.heartrate }}</td>
+                </tr> -->
+                <tr>
+                    <td>{{ info.member }}</td>
+                    <td>
+                        {% for item in info.items %}
+                            <li>{{ item }}</li>
+                        {% endfor %}
+                    </td>
+                    <td>{{ info.time }}</td>
+                    <td>
+                        <a href="{% url 'add_checkup_data' checkup_id=info.checkup_id %}" class="btn btn-primary">Add</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <h2>Special Health Data</h2>
+        <table id="healthTable2" class="table table-striped table-bordered" style="width:100%">
+            <thead>
+                <!-- <tr>
+                    <th>Member Name</th>
+                    <th>Room Number</th>
+                    <th>Blood Pressure</th>
+                    <th>Sugar</th>
+                    <th>Heart Rate</th>
+                </tr> -->
+                <tr>
+                    <th>Member Name</th>
+                    <!-- <th>Checkup items</th> -->
+                    <th>Frequency</th>
+                    <th>Date</th>
+                    <th>Add Checkup Data</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for info in checkup_data_special %}
+                <!-- <tr>
+                    <td>{{ info.member_name }}</td>
+                    <td>{{ info.member_room_no }}</td>
+                    <td>{{ info.blood_pressure }}</td>
+                    <td>{{ info.sugar }}</td>
+                    <td>{{ info.heartrate }}</td>
+                </tr> -->
+                <tr>
+                    <td>{{ info.member }}</td>
+                    <!-- <td>
+                        {% for item in info.items %}
+                            <li>{{ item }}</li>
+                        {% endfor %}
+                    </td> -->
+                    <td>{{ info.frequency }}</td>
+                    <td>{{ info.date }}</td>
+                    <td>
+                        <a href="{% url 'add_checkup_data_special' checkup_id=info.checkup_id %}" class="btn btn-primary">Add</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <!-- Include Bootstrap and jQuery Scripts -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- Include jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- Initialize DataTables for Medication Table -->
+    <script>
+        $(document).ready(function() {
+            $('#medicationTable').DataTable({
+                responsive: true
+            });
+        });
+    </script>
+
+    <!-- Initialize DataTables for Health Data Table -->
+    <script>
+        $(document).ready(function() {
+            $('#healthTable').DataTable({
+                responsive: true
+            });
+        });
+    </script>
+</body>
+</html>

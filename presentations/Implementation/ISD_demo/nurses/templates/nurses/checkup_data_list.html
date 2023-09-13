@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkup Data List</title>
+    <!-- Add Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-4">
+        <h2>Checkup Data List</h2>
+
+        <!-- Sorting options -->
+        <div class="mb-3">
+            <label for="sortSelect" class="form-label">Sort by:</label>
+            <select class="form-select" id="sortSelect">
+                <option value="blood_pressure">Blood Pressure</option>
+                <option value="sugar">Sugar</option>
+                <option value="heartrate">Heart Rate</option>
+                <!-- <option value="riskrate">Riskrate</option> -->
+            </select>
+        </div>
+
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Member Name</th>
+                    <th>Blood Pressure</th>
+                    <th>Sugar</th>
+                    <th>Heart Rate</th>
+                    <!-- <th>Risk Rate</th> -->
+                </tr>
+            </thead>
+            <tbody>
+                {% for data in checkup_data %}
+                    <tr>
+                        <td>{{ data.Member_Id.Name }}</td>
+                        <td>{{ data.Checkup_Id.Blood_Pressure }}</td>
+                        <td>{{ data.Checkup_Id.Sugar }}</td>
+                        <td>{{ data.Checkup_Id.Heartrate }}</td>
+                        <!-- <td>{{ data.Checkup_Id.Risk_rate }}</td> -->
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <!-- Pagination links -->
+        <div class="pagination">
+            <span class="step-links">
+                {% if checkup_data.has_previous %}
+                    <a href="?page=1{% if order_by %}&order_by={{ order_by }}{% endif %}">First</a>
+                    <a href="?page={{ checkup_data.previous_page_number }}{% if order_by %}&order_by={{ order_by }}{% endif %}">Previous</a>
+                {% endif %}
+
+                <span class="current-page">{{ checkup_data.number }}</span>
+
+                {% if checkup_data.has_next %}
+                    <a href="?page={{ checkup_data.next_page_number }}{% if order_by %}&order_by={{ order_by }}{% endif %}">Next</a>
+                    <a href="?page={{ checkup_data.paginator.num_pages }}{% if order_by %}&order_by={{ order_by }}{% endif %}">Last</a>
+                {% endif %}
+            </span>
+        </div>
+    </div>
+
+    <!-- Include Bootstrap and jQuery scripts -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            // Handle sorting option change
+            $('#sortSelect').change(function() {
+                var selectedSort = $(this).val();
+                $('#sortSelect').val(selectedSort);
+                var currentUrl = window.location.href.split('?')[0];  // Get the current URL without query parameters
+                window.location.href = currentUrl + '?order_by=' + selectedSort;  // Redirect with the selected sorting option
+            });
+        });
+    </script>
+</body>
+</html>

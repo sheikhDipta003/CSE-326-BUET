@@ -1,0 +1,91 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkup Report</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;400;900&family=Ubuntu&display=swap" rel="stylesheet">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'doctors/residentStatus.css' %}">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.4/css/jquery.dataTables.css">
+</head>
+<body>
+    <section id="navigation">
+        <div class="container-fluid">
+            <!-- Nav Bar -->
+            <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
+                <a class="navbar-brand" href="">Belasheshe</a>
+
+                <ul class="navbar-nav ms-auto">
+                    <a class="nav-link" href="{% url 'doctor_dashboard' doctor_id=1 %}">Dashboard</a>
+                    <a class="nav-link active" aria-current="page" href="#">Member Info</a>
+                    <a class="nav-link" href="#">Nurse Info</a>
+                    <a class="nav-link" href="#">My profile (Doctor)</a>
+                     <!-- <a class="nav-link disabled" aria-disabled="true">Disabled</a> -->
+                </ul>
+
+            </nav>
+            <div class="tabbing" id="allOptions">
+                <ul class="nav nav-tabs justify-content-center">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Resident Status</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">Special Checkup Report</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <div class="main-content">
+        <h2 class="context-title">Reports:</h2>
+        
+        <table class="table table-bordered" id="checkupTable">
+            <thead>
+                <tr>
+                    <th data-type="date">Report Date</th>
+                    <th>Resident ID</th>
+                    <th>Name</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody class="view-details">
+                <!-- Resident Info Rows -->
+                <tr>
+                    {% for checkup in special_checkups %}
+                    <td>{{ checkup.Date }}</td>
+                    <td>{{ checkup.Member_Id }}</td>
+                    <td>{{ checkup.Member_Id.Name }}</td>
+                    <td>
+                        <a href="{% url 'special_checkup_data' member_id=checkup.Member_Id nurse_id=checkup.Nurse_Id doctor_id=checkup.Doctor_Id %}">View</a>
+                    </td>
+                    {% endfor %}
+                </tr>
+                
+                <!-- Add more resident info rows as needed -->
+            </tbody>
+        </table>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <!-- Include DataTables JavaScript -->
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.4/js/jquery.dataTables.js"></script>
+        
+    <script>
+        $(document).ready(function() {
+            $('#checkupTable').DataTable({
+                responsive: true,
+                "columnDefs": [
+                { "type": "date", "targets": 0 }  // Assuming the date column is the first (index 0) column
+            ]
+            });
+        });
+    </script>
+</body>
+</html>

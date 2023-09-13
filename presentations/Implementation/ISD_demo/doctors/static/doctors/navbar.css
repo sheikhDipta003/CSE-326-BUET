@@ -1,0 +1,43 @@
+body { 
+    padding-top: 100px; 
+    font-family: 'Montserrat', sans-serif;
+}
+
+.container-fluid{
+  
+    padding: 0 0 1%;
+  }
+  
+  .navbar-brand{
+    font-family: "Ubuntu";
+    font-weight: bold;
+    margin-left: 5%;
+    font-size: 2rem;
+  }
+  
+  .navbar-nav {
+    margin-right: 95px;
+  }
+  
+  .nav-item {
+    margin-right: 20px;
+  }
+  
+  .navbar {
+    padding:1rem 0 1rem;
+  }
+  
+  .nav-link{
+    font-size: 1.1rem;
+    font-weight: bold;
+  }
+  
+  .tabbing .nav-link{
+    font-family: "Ubuntu";
+    font-size:20px;
+}
+
+.tabbing a:visited, .tabbing a:link{
+  text-decoration: none;
+  color: black;
+}
