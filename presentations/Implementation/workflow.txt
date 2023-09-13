@@ -1,0 +1,42 @@
+Version-1 of Dashboard and ResidentStatus views for residents app.
+
+
+--------------------------------  Workflow  -------------------------------
+
+1) Created the three models Member,ResidentMedCond and MemberAppoint in residents/models.py
+
+
+2) Then I have run 'python manage.py makemigrations' which will create the backend SQL code for creating the tables.
+ After that, by running 'python manage.py migrate', django will execute these backend codes and thus create the three tables.
+
+***Install viewflow using 'pip install django-viewflow --pre' BEFORE RUNNING THE MIGRATIONS***
+
+3) Then I opened cmd prompt and run 'python manage.py shell' to open the python shell. In there, I executed these commands
+ one-by-one:
+	(1) from residents.models import Member	=> import Member table from the DB
+	(2) mem1 = Member(Member_ID=100,Room_no=200,Name='Jon',Address='someaddress, dhaka',Email='321@gmail.com',
+	Phone='0187781919',DOB='1955-03-15',Religion='Islam',Account_no='9388181010')		=> create a new member with the
+	 given field values
+	(3) mem1.save()		=> save this entry in DB
+	(4) Member.objects.all()	=> verify
+	(5) exit()  => to exit python shell
+
+
+4) Created classes DashboardView and ResidentPhyStatusView in residents/views.py. 
+
+By saying template_name = 'residents/dashboard.html', I am telling djano to use the html file templates/residents/dashboard.html
+ to render this webpage.
+
+Similarly for template_name = 'residents/phyStat.html'.
+
+5) Next, created the html files - templates/residents/dashboard.html and templates/residents/phyStat.html.
+
+And the necessary css and js files are located inside static/residents folder.
+
+5) Finally, I have the database tables and I have the html files. Next, I have to tell django the different routes that a it must
+ use to direct user to different webpage. This is done by modifying residents/urls.py and belasheshe/urls.py.
+
+6) Now, by running 'python manage.py runserver' at cmd prompt and typing http://127.0.0.1:8000/residents/ at the browser, I am able
+ to see the website.
+
+
